@@ -19,7 +19,7 @@ jobs:
 
     - name: Deploy to EC2 instance
       run: |
-        ssh -o StrictHostKeyChecking=no -i ec2-key.pem ubuntu@<your-ec2-ip> << 'EOF'
+        ssh -o StrictHostKeyChecking=no -i ec2-key.pem ubuntu@18.221.156.34 << 'EOF'
           set -e
           cd deployment
           git pull origin main || true
