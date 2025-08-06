@@ -1,0 +1,76 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+.venv/
+env/
+ENV/
+
+# Environment variable files
+*.env
+
+# Flask instance folder and logs
+instance/
+*.log
+
+# Pytest and coverage
+.coverage
+.cache/
+htmlcov/
+pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Model and weights
+*.h5
+*.hdf5
+*.ckpt
+*.pb
+*.tflite
+*.pkl
+*.joblib
+*.pt
+
+# TensorBoard logs
+logs/
+events.out.tfevents.*
+
+# VSCode / PyCharm / other IDEs
+.vscode/
+.idea/
+*.swp
+
+# Docker
+*.pid
+docker-compose.override.yml
+Dockerfile.*.backup
+.dockerignore
+
+# AWS credential/config files (DO NOT COMMIT)
+.aws/
+*.pem
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Node (if frontend exists in repo)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# CI/CD
+.github/workflows/*-secret.yml
+*.log
+coverage.xml

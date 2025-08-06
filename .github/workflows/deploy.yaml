@@ -1,0 +1,28 @@
+name: Deploy Flask App to EC2
+
+on:
+  push:
+    branches: [main]  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.4
+      with:
+        ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+    - name: Deploy to EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no ubuntu@18.221.156.34 << 'EOF'
+          cd deployment
+          git pull origin main
+          docker build -t flask-app .
+          docker stop flask-app || true && docker rm flask-app || true
+          docker run -d -p 80:5050 --name flask-app flask-app
+        EOF
