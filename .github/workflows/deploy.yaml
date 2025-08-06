@@ -17,12 +17,13 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
 
-    - name: Deploy to EC2
+    - name: Deploy to EC2 instance
       run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@18.221.156.34 << 'EOF'
+        ssh -o StrictHostKeyChecking=no -i ec2-key.pem ubuntu@<your-ec2-ip> << 'EOF'
+          set -e
           cd deployment
-          git pull origin main
+          git pull origin main || true
           docker build -t flask-app .
-          docker stop flask-app || true && docker rm flask-app || true
+          docker rm -f flask-app || true
           docker run -d -p 80:5050 --name flask-app flask-app
         EOF
